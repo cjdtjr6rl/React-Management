@@ -1,5 +1,5 @@
 ## Management System
-React를 이용한 사이트입니다.ㄹ
+React를 이용한 사이트입니다.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
