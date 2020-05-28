@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Customer from './component/Customer' // Customer.js 파일을 import하여 출력할 수 있도록 구현
+import Customer from './component/Customer'; // Customer.js 파일을 import하여 출력할 수 있도록 구현
 import './App.css';
 /* material-ui를 이용하여 table 생성 */
-import Paper from '@material-ui/core/Paper'
-import Table from '@material-ui/core/Table'
-import TableHead from '@material-ui/core/TableHead'
-import TableBody from '@material-ui/core/TableBody'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
-import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   root: {
