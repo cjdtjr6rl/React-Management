@@ -19,38 +19,29 @@ const styles = theme => ({
   table: {
     minWidth: 1080 // 가로 길이가 1080px보다 작아지면 가로 스크롤바가 생기게 함
   }
-})
-
-const customers = [
-  {
-    'id': 1,
-    'image': 'https://placeimg.com/64/64/any',
-    'name': '이준형',
-    'birthday': '940415',
-    'gender': '남자',
-    'job': '대학생'
-  },
-  {
-    'id': 2,
-    'image': 'https://placeimg.com/64/65/any',
-    'name': '용범중',
-    'birthday': '961234',
-    'gender': '남자',
-    'job': '프로그래머'
-  },
-  {
-    'id': 3,
-    'image': 'https://placeimg.com/64/66/any',
-    'name': '심지희',
-    'birthday': '950508',
-    'gender': '여자',
-    'job': '직장인'
-  }
-]
+});
 
 class App extends Component {
+
+  // 데이터가 변경될 수 있으므로
+  state = { // state -> 컴포넌트에서 데이터를 변경할 수 있을 때 명시
+    customers: ""
+  }
+
+  componentDidMount() { // api에 접근을 해서 데이터를 받아오는 작업을 함
+    this.callApi()
+      .then(res => this.setState({customers: res}))
+      .catch(err => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch('/api/customers');
+    const body = await response.json(); // 데이터를 json형식으로 가져와 body에 넣어 주겠다는 뜻
+    return body;
+  }
+
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props; // props -> 데이터를 변경할 수 없을 때 명시
     return (
       <Paper className={classes.root}>
         <Table className={classes.table}>
@@ -66,7 +57,7 @@ class App extends Component {
           </TableHead>
           <TableBody>
             {
-              customers.map(c => { // map함수를 사용함으로써 소스 코드가 훨씬 간결
+              this.state.customers ? this.state.customers.map(c => { // map함수를 사용함으로써 소스 코드가 훨씬 간결
                 return (
                 <Customer
                   key = {c.id} // map을 사용할 시 각각 구분을 할 수 있는 key값을 넣어주어야 함
@@ -78,7 +69,7 @@ class App extends Component {
                   job = {c.job}
                 />
                 );
-              })
+              }) : ""
             }
           </TableBody>
         </Table>
