@@ -1,5 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# GIT에 db의 id와 pwd가 올라가지 않도록 하는 것
+# database
+/database.json
+
 # dependencies
 /node_modules
 /.pnp
