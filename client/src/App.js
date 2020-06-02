@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Customer from './component/Customer'; // Customer.js 파일을 import하여 출력할 수 있도록 구현
+import CustomerAdd from './component/CustomerAdd';
 import './App.css';
 /* material-ui를 이용하여 table 생성 */
 import Paper from '@material-ui/core/Paper';
@@ -74,43 +75,46 @@ class App extends Component {
   render() {
     const { classes } = this.props; // props -> 데이터를 변경할 수 없을 때 명시
     return (
-      <Paper className={classes.root}>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell>번호</TableCell>
-              <TableCell>이미지</TableCell>
-              <TableCell>이름</TableCell>
-              <TableCell>생년월일</TableCell>
-              <TableCell>성별</TableCell>
-              <TableCell>직업</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {
-              this.state.customers ? this.state.customers.map(c => { // map함수를 사용함으로써 소스 코드가 훨씬 간결
-                return (
-                <Customer
-                  key = {c.id} // map을 사용할 시 각각 구분을 할 수 있는 key값을 넣어주어야 함
-                  id = {c.id}
-                  image = {c.image}
-                  name = {c.name}
-                  birthday = {c.birthday}
-                  gender = {c.gender}
-                  job = {c.job}
-                />
-                );
-              }) :
-              // progress bar 애니메이션 출력하는 것
+      <div>
+        <Paper className={classes.root}>
+          <Table className={classes.table}>
+            <TableHead>
               <TableRow>
-                <TableCell colSpan="6" align="center">
-                  <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
-                </TableCell>
+                <TableCell>번호</TableCell>
+                <TableCell>이미지</TableCell>
+                <TableCell>이름</TableCell>
+                <TableCell>생년월일</TableCell>
+                <TableCell>성별</TableCell>
+                <TableCell>직업</TableCell>
               </TableRow>
-            }
-          </TableBody>
-        </Table>
-      </Paper>
+            </TableHead>
+            <TableBody>
+              {
+                this.state.customers ? this.state.customers.map(c => { // map함수를 사용함으로써 소스 코드가 훨씬 간결
+                  return (
+                  <Customer
+                    key = {c.id} // map을 사용할 시 각각 구분을 할 수 있는 key값을 넣어주어야 함
+                    id = {c.id}
+                    image = {c.image}
+                    name = {c.name}
+                    birthday = {c.birthday}
+                    gender = {c.gender}
+                    job = {c.job}
+                  />
+                  );
+                }) :
+                // progress bar 애니메이션 출력하는 것
+                <TableRow>
+                  <TableCell colSpan="6" align="center">
+                    <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
+                  </TableCell>
+                </TableRow>
+              }
+            </TableBody>
+          </Table>
+        </Paper>
+        <CustomerAdd/>
+      </div>
     );
   }
 }
