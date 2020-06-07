@@ -48,10 +48,22 @@ props or state => shouldComponentUpdate()
 
 class App extends Component {
 
-  // 데이터가 변경될 수 있으므로
-  state = { // state -> 컴포넌트에서 데이터를 변경할 수 있을 때 명시
-    customers: "",
-    completed: 0
+  constructor(props) {
+    super(props);
+    this.state = {
+      customers: '',
+      completed: 0
+    }
+  }
+
+  stateRefresh = () => {
+    this.setState({
+      customers: '',
+      completed: 0
+    });
+    this.callApi()
+      .then(res => this.setState({customers: res}))
+      .catch(err => console.log(err));
   }
 
   componentDidMount() { // api에 접근을 해서 데이터를 받아오는 작업을 함
@@ -113,7 +125,7 @@ class App extends Component {
             </TableBody>
           </Table>
         </Paper>
-        <CustomerAdd/>
+        <CustomerAdd stateRefresh={this.stateRefresh}/>
       </div>
     );
   }
