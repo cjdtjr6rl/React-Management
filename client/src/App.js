@@ -98,6 +98,7 @@ class App extends Component {
                 <TableCell>생년월일</TableCell>
                 <TableCell>성별</TableCell>
                 <TableCell>직업</TableCell>
+                <TableCell>설정</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -105,6 +106,7 @@ class App extends Component {
                 this.state.customers ? this.state.customers.map(c => { // map함수를 사용함으로써 소스 코드가 훨씬 간결
                   return (
                   <Customer
+                    stateRefresh={this.stateRefresh}
                     key = {c.id} // map을 사용할 시 각각 구분을 할 수 있는 key값을 넣어주어야 함
                     id = {c.id}
                     image = {c.image}

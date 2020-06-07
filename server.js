@@ -27,7 +27,7 @@ const upload = multer({dest: './upload'});
 app.get('/api/customers', (req, res) => { // restApi
     // client가 요청을 하게 되면 아래와 같은 파일을 json 형식으로 불러오게 되서 client에게 보여줌
     connection.query(
-      "SELECT * FROM CUSTOMER",
+      "SELECT * FROM CUSTOMER WHERE isDeleted = 0",
       (err, rows, fields) => {
         res.send(rows); // 사용자들에게 rows의 내용을 보여주는 것
       }
@@ -37,7 +37,7 @@ app.get('/api/customers', (req, res) => { // restApi
 app.use('/image', express.static('./upload')); // image라는 폴더에 접근을 할건데 실제 나의 폴더의 upload의 폴더와 이름이 같음
 
 app.post('/api/customers', upload.single('image'), (req, res) => {
-  let sql = 'INSERT INTO CUSTOMER VALUES (null, ?, ?, ?, ?, ?)';
+  let sql = 'INSERT INTO CUSTOMER VALUES (null, ?, ?, ?, ?, ?, now(), 0)';
   let image = '/image/' + req.file.filename;
   let name = req.body.name;
   let birthday = req.body.birthday;
@@ -49,6 +49,16 @@ app.post('/api/customers', upload.single('image'), (req, res) => {
         res.send(rows);
       }
     );
+});
+
+app.delete('/api/customers/:id', (req, res) => {
+  let sql = 'UPDATE CUSTOMER SET isDeleted = 1 WHERE id = ?';
+  let params = [req.params.id];
+  connection.query(sql, params,
+      (err, rows, fields) => {
+        res.send(rows);
+      }
+    )
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
