@@ -56,7 +56,7 @@ class App extends Component {
     }
   }
 
-  stateRefresh = () => {
+  stateRefresh = () => { // state를 초기화 해주는 것
     this.setState({
       customers: '',
       completed: 0
