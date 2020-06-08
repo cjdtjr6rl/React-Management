@@ -119,14 +119,16 @@ class App extends Component {
     super(props);
     this.state = {
       customers: '',
-      completed: 0
+      completed: 0,
+      searchKeyword:''
     }
   }
 
   stateRefresh = () => { // state를 초기화 해주는 것
     this.setState({
       customers: '',
-      completed: 0
+      completed: 0,
+      searchKeyword: ''
     });
     this.callApi()
       .then(res => this.setState({customers: res}))
@@ -158,6 +160,14 @@ class App extends Component {
   }
 
   render() {
+    const filteredComponents = (data) => {
+      data = data.filter((c) => {
+        return c.name.indexOf(this.state.searchKeyword) > -1; // 사용자가 search한 것만 남겨놓고 나머지는 뜨지 않게
+      });
+      return data.map((c) => {
+        return <Customer stateRefresh={this.stateRefresh} key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} />
+      });
+    }
     const { classes } = this.props; // props -> 데이터를 변경할 수 없을 때 명시
     const cellList = ["번호", "프로필 이미지", "이름", "생년월일", "성별", "직업", "설정"]
     return (
@@ -185,7 +195,9 @@ class App extends Component {
                   root: classes.inputRoot,
                   input: classes.inputInput,
                 }}
-                inputProps={{ 'aria-label': 'search' }}
+                name="searchKeyword"
+                value={this.state.searchKeyword}
+                onChange={this.handleValueChange}
               />
             </div>
           </Toolbar>
@@ -204,20 +216,8 @@ class App extends Component {
             </TableHead>
             <TableBody>
               {
-                this.state.customers ? this.state.customers.map(c => { // map함수를 사용함으로써 소스 코드가 훨씬 간결
-                  return (
-                  <Customer
-                    stateRefresh={this.stateRefresh}
-                    key = {c.id} // map을 사용할 시 각각 구분을 할 수 있는 key값을 넣어주어야 함
-                    id = {c.id}
-                    image = {c.image}
-                    name = {c.name}
-                    birthday = {c.birthday}
-                    gender = {c.gender}
-                    job = {c.job}
-                  />
-                  );
-                }) :
+                this.state.customers ? 
+                  filteredComponents(this.state.customers) :
                 // progress bar 애니메이션 출력하는 것
                 <TableRow>
                   <TableCell colSpan="6" align="center">
