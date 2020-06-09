@@ -34,6 +34,16 @@ app.get('/api/customers', (req, res) => { // restApi
     );
 });
 
+// 졸업사정회 표 db
+app.get('/api/list', (req, res) => {
+  connection.query(
+    "SELECT * FROM LESSON",
+    (err, rows, fields) => {
+      res.send(rows);
+    }
+  );
+});
+
 app.use('/image', express.static('./upload')); // image라는 폴더에 접근을 할건데 실제 나의 폴더의 upload의 폴더와 이름이 같음
 
 app.post('/api/customers', upload.single('image'), (req, res) => {
