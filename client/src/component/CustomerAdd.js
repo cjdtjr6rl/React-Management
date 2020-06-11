@@ -1,6 +1,6 @@
-// 고객 추가 양식
+// 회원 추가 양식
 import React from 'react';
-import { post } from 'axios'; // post 방식으로 고객추가 방식을 보낼 수 있도록 axios 사용
+import { post } from 'axios'; // post 방식으로 회원추가 방식을 보낼 수 있도록 axios 사용
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -100,10 +100,10 @@ class CustomerAdd extends React.Component {
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
-                    고객 추가하기
+                    회원 추가하기
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}>
-                    <DialogTitle>고객 추가</DialogTitle>
+                    <DialogTitle>회원 추가</DialogTitle>
                     <DialogContent>
                         <input className={classes.hidden} accept="image/*" id="raised-button-file" type="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange}/><br/>
                         <label htmlFor="raised-button-file">

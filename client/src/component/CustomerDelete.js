@@ -45,7 +45,7 @@ class CustomerDelete extends React.Component {
                     </DialogTitle>
                     <DialogContent>
                         <Typography gutterBottom>
-                            삭제한 고객 정보가 삭제됩니다.
+                            삭제한 회원 정보가 삭제됩니다.
                         </Typography>
                     </DialogContent>
                     <DialogActions>
