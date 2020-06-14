@@ -2,7 +2,7 @@ import React from 'react';
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 
-class classList extends React.Component {
+class ClassList extends React.Component {
     render() {
         return (
             <TableRow>
@@ -14,4 +14,4 @@ class classList extends React.Component {
     }
 }
 
-export default classList;
+export default ClassList;

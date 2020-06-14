@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Clist from './component/classList';
+import Classlist from './component/ClassList';
+import ClassAdd from './component/ClassAdd';
 import { withStyles } from '@material-ui/core/styles';
 
 /* material-ui를 이용하여 table 생성 */
@@ -25,6 +26,16 @@ const styles = theme => ({
     root: {
       width: '100%',
       minWidth: 1080
+    },
+    menu: {
+        marginTop: 15,
+        marginBottom: 15,
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    paper: {
+        marginLeft: 18,
+        marginRight: 18
     },
     progress: {
         margin: theme.spacing.unit * 2
@@ -153,6 +164,9 @@ class main extends Component {
                         </div>
                     </Toolbar>
                 </AppBar>
+                <div className={classes.menu}>
+                    <ClassAdd stateRefresh={this.stateRefresh}/>
+                </div>
                 <Paper className={classes.paper}>
                     <Table className={classes.table}>
                         <TableHead>
@@ -166,7 +180,7 @@ class main extends Component {
                         {
                             this.state.list ? this.state.list.map(c => { // map함수를 사용함으로써 소스 코드가 훨씬 간결
                                 return (
-                                <Clist
+                                <Classlist
                                     stateRefresh={this.stateRefresh}
                                     key = {c.id} // map을 사용할 시 각각 구분을 할 수 있는 key값을 넣어주어야 함
                                     grade = {c.grade}
