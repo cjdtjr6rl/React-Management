@@ -155,7 +155,7 @@ class main extends Component {
                             <SearchIcon />
                         </div>
                         <InputBase
-                            placeholder="검색하"
+                            placeholder="검색하기"
                             classes={{
                             root: classes.inputRoot,
                             input: classes.inputInput,
