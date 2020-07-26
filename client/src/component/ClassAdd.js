@@ -47,13 +47,6 @@ class ClassAdd extends React.Component {
         })
     }
 
-    handleFileChange = (e) => {
-        this.setState({
-            file: e.target.files[0], // 파일을 업로드 할 때 하나만 올리기 때문에
-            fileName: e.target.value
-        })
-    }
-
     handleValueChange = (e) => {
         let nextState = {};
         nextState[e.target.name] = e.target.value; // 변경된 내용
@@ -105,8 +98,6 @@ class ClassAdd extends React.Component {
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>학과 추가</DialogTitle>
                     <DialogContent>
-                        <input className={classes.hidden} accept="image/*" id="raised-button-file" type="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange}/>
-                        <br/>
                         <TextField label="학과" type="text" name="userName" value={this.state.userName} onChange={this.handleValueChange}/><br/>
                         <TextField label="학부" type="text" name="birthday" value={this.state.birthday} onChange={this.handleValueChange}/><br/>
                         <TextField label="과목이름" type="text" name="gender" value={this.state.gender} onChange={this.handleValueChange}/><br/>
