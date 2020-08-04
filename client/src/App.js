@@ -10,7 +10,7 @@ class App extends Component {
           <nav>
             <ul>
               <li>
-                <Link to="/list">회원 생성</Link>
+                <Link to="/list">회원생성</Link>
               </li>
               <li>
                 <Link to="/main">졸업사정회 표</Link>
