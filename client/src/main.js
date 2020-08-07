@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Classlist from './component/ClassList';
 import ClassAdd from './component/ClassAdd';
+import styled from 'styled-components';
 import { withStyles } from '@material-ui/core/styles';
 
 /* material-ui를 이용하여 table 생성 */
@@ -21,6 +22,10 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+
+const listStyle = styled.div`
+
+`;
 
 const styles = theme => ({
     root: {
