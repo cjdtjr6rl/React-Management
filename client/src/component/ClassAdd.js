@@ -89,7 +89,6 @@ class ClassAdd extends React.Component {
 
     // 값이 변경이 되었는지 감지를 하기 위해서 onChange의 handleValueChange를 사용
     render() {
-        const { classes } = this.props;
         return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>

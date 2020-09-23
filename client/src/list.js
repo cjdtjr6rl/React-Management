@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Customer from './component/Customer'; // Customer.js 파일을 import하여 출력할 수 있도록 구현
 import CustomerAdd from './component/CustomerAdd';
-import styled from 'styled-components';
 import './App.css';
 /* material-ui를 이용하여 table 생성 */
 import Paper from '@material-ui/core/Paper';
